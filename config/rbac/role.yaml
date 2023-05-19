@@ -1,0 +1,23 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: controller-manager
+    app.kubernetes.io/component: manager
+    app.kubernetes.io/created-by: istio-demo-app
+    app.kubernetes.io/part-of: istio-demo-app
+    app.kubernetes.io/managed-by: kustomize
+  name: manager-role
+rules:
+  - apiGroups:
+      [
+        "config.istio.io",
+        "security.istio.io",
+        "networking.istio.io",
+        "authentication.istio.io",
+        "rbac.istio.io",
+        "telemetry.istio.io",
+      ]
+    verbs: ["get", "watch", "list"]
+    resources: ["*"]

@@ -14,3 +14,16 @@ kubebuilder init --domain zirain.dev --repo zirain.dev/istio-demo-app
 ```
 
 
+```
+# build image
+make docker-build
+# load image to kind cluster
+kind create cluster --name istio
+kind load docker-image controller:latest --name istio 
+# deploy to cluster
+make deploy
+# check logs
+kubectl logs -l control-plane=controller-manager -n istio-demo-app-system
+# cleanup
+make undeploy
+```
